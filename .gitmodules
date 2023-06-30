@@ -1,0 +1,3 @@
+[submodule "thirdparty/sdk"]
+	path = thirdparty/sdk
+	url = https://github.com/LiteLDev/SDK-CPP.git
