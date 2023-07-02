@@ -1,3 +1,4 @@
+## C++
 # Sources
 *.c     text diff=cpp
 *.cc    text diff=cpp
@@ -35,3 +36,6 @@
 *.exe   binary
 *.out   binary
 *.app   binary
+
+
+## Others

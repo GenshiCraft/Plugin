@@ -1,11 +1,10 @@
 @echo off
 
-if not exist %1\thirdparty\sdk\Lib\bedrock_server_api.lib goto process
-if not exist %1\thirdparty\sdk\Lib\bedrock_server_var.lib goto process
+if not exist %~dp0..\..\third_party\sdk\lib\bedrock_server_api.lib goto process
+if not exist %~dp0..\..\third_party\sdk\lib\bedrock_server_var.lib goto process
 goto end
 
 :process
-cd /d %1\thirdparty\sdk\tools\
-PeEditor.exe -c -l -o ..\lib
+%~dp0..\..\third_party\sdk\tools\PeEditor.exe -c -l -o %~dp0\..\..\third_party\sdk\lib
 
 :end

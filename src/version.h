@@ -1,0 +1,17 @@
+#ifndef VERSION_H_
+#define VERSION_H_
+
+#define PLUGIN_STATUS_DEV 0
+#define PLUGIN_STATUS_BETA 1
+#define PLUGIN_STATUS_STABLE 2
+
+#define PLUGIN_NAME "GenshiCraft"
+#define PLUGIN_DESCRIPTION "Play Genshin Impact in Minecraft!"
+#define PLUGIN_AUTHOR "Futrime"
+#define PLUGIN_VERSION_MAJOR 0
+#define PLUGIN_VERSION_MINOR 0
+#define PLUGIN_VERSION_PATCH 1
+#define PLUGIN_STATUS PLUGIN_STATUS_DEV
+#define PLUGIN_TARGET_PROTOCOL_VERSION 589
+
+#endif  // VERSION_H_
