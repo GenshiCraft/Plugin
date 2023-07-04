@@ -7,7 +7,31 @@
 #include <map>
 #include <string>
 
+#include "events.h"
+#include "genshicraft/context.h"
 #include "version.h"
+
+void CheckProtocolVersion();
+
+// ---------------------------------------------------------
+
+/// @brief The welcome message.
+constexpr char kWelcomeMessage[] = R"(
+   _____                _     _  _____            __ _   
+  / ____|              | |   (_)/ ____|          / _| |  
+ | |  __  ___ _ __  ___| |__  _| |     _ __ __ _| |_| |_ 
+ | | |_ |/ _ \ '_ \/ __| '_ \| | |    | '__/ _` |  _| __|
+ | |__| |  __/ | | \__ \ | | | | |____| | | (_| | | | |_ 
+  \_____|\___|_| |_|___/_| |_|_|\_____|_|  \__,_|_|  \__|
+                                                         
+ ---------- Play Genshin Impact in Minecraft! -----------
+
+)";
+
+/// @brief The context of the plugin.
+::genshicraft::Context* g_context = nullptr;
+
+// ---------------------------------------------------------
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call,
                       LPVOID lpReserved) {
@@ -31,6 +55,20 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call,
   return TRUE;
 }
 
+extern "C" {
+_declspec(dllexport) void onPostInit() {
+  CheckProtocolVersion();
+
+  g_context = new ::genshicraft::Context(PLUGIN_NAME);
+
+  g_context->GetLogger().info(kWelcomeMessage);
+
+  SubscribeToEvents();
+}
+}
+
+// ---------------------------------------------------------
+
 void CheckProtocolVersion() {
   auto currentProtocol = ll::getServerProtocolVersion();
   if (PLUGIN_TARGET_PROTOCOL_VERSION != currentProtocol) {
@@ -43,11 +81,4 @@ void CheckProtocolVersion() {
         "This will most likely crash the server, please use the Plugin that "
         "matches the BDS version!");
   }
-}
-
-extern "C" {
-_declspec(dllexport) void onPostInit() {
-  std::ios::sync_with_stdio(false);
-  CheckProtocolVersion();
-}
 }

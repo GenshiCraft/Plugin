@@ -3,7 +3,11 @@ cmake_minimum_required(VERSION 3.18)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_BUILD_TYPE Release)
 
-aux_source_directory(. SRC_LIST)
+file(
+    GLOB_RECURSE SRC_LIST
+    ${CMAKE_SOURCE_DIR}/src/*.cc
+    ${CMAKE_SOURCE_DIR}/src/*.h
+)
 
 add_library(${CMAKE_PROJECT_NAME} SHARED ${SRC_LIST})
 
